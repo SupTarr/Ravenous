@@ -22,9 +22,15 @@ function App(props) {
   const [businesses, setBusinesses] = useState([]);
 
   const searchYelp = (term, location, sortBy) => {
-    Yelp.searchYelp(term, location, sortBy).then((businesses) => {
-      setBusinesses(businesses);
-    });
+    if (term !== "" || location !== "") {
+      Yelp.searchYelp(term, location, sortBy).then((businesses) => {
+        if(businesses !== undefined) {
+          setBusinesses(businesses);
+        } else {
+          alert("No businesses found");
+        }
+      });
+    }
   };
 
   return (
