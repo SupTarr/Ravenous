@@ -5,9 +5,11 @@ class Business extends React.Component {
   render() {
     return (
       <div className="Business">
-        <div className="image-container">
-          <img src={this.props.business.imageSrc} alt="" />
-        </div>
+        {this.props.business.imageSrc !== "" && (
+          <div className="image-container">
+            <img src={this.props.business.imageSrc} alt="" />
+          </div>
+        )}
         <div className="Business-name">
           <a href={this.props.business.url} target="blank">
             <h2>{this.props.business.name}</h2>
