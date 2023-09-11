@@ -11,10 +11,21 @@
   margin-bottom: 1rem;
 }
 
-.Business h2 {
+.Business .Business-name {
   margin-bottom: 0.5rem;
   font-size: 1.2rem;
   font-weight: 600;
+  color: #000;
+  text-decoration: none;
+}
+
+.Business .Business-name a {
+  color: #cca353;
+  text-decoration: none;
+}
+
+.Business .Business-name a:hover {
+  text-decoration: underline;
 }
 
 .Business-information {
