@@ -8,7 +8,7 @@ const Yelp = {
         headers: {
           Authorization: `Bearer ${apiKey}`,
         },
-      }
+      },
     );
     const jsonResponse = await response.json();
     if (jsonResponse.businesses) {

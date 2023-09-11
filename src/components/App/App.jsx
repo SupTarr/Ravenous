@@ -24,7 +24,7 @@ function App(props) {
   const searchYelp = (term, location, sortBy) => {
     if (term !== "" || location !== "") {
       Yelp.searchYelp(term, location, sortBy).then((businesses) => {
-        if(businesses !== undefined) {
+        if (businesses !== undefined) {
           setBusinesses(businesses);
         } else {
           alert("No businesses found");
