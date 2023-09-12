@@ -16,16 +16,14 @@ class App extends React.Component {
   }
 
   searchYelp(term, location, sortBy) {
-    if (term !== "" || location !== "") {
-      Yelp.searchYelp(term, location, sortBy).then((businesses) => {
-        if (businesses !== undefined) {
-          this.setState({ businesses: businesses, error: "" });
-        } else {
-          this.setState({ error: "No businesses found" });
-        }
-        this.setState({ isLoading: false });
-      });
-    }
+    Yelp.searchYelp(term, location, sortBy).then((businesses) => {
+      if (businesses !== undefined) {
+        this.setState({ businesses: businesses, error: "" });
+      } else {
+        this.setState({ error: "No businesses found" });
+      }
+      this.setState({ isLoading: false });
+    });
   }
 
   render() {
