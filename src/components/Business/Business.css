@@ -4,10 +4,17 @@
   justify-content: space-between;
   width: 16.66rem;
   margin: 0 0.5rem 2.3rem 0.5rem;
+  padding: 1rem;
   border-radius: 16px;
   background: #fff;
   transform-origin: center;
   transition: all 0.4s ease-in-out;
+}
+
+.Business:hover {
+  -webkit-box-shadow: 10px 10px 10px 1px rgba(106, 106, 106, 0.75);
+  -moz-box-shadow: 10px 10px 10px 1px rgba(106, 106, 106, 0.75);
+  box-shadow: 10px 10px 10px 1px rgba(106, 106, 106, 0.75);
 }
 
 .Business .image-container {
