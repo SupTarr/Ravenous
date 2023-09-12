@@ -8,6 +8,8 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      isLoading: false,
+      error: "",
       businesses: [],
     };
     this.searchYelp = this.searchYelp.bind(this);
@@ -17,10 +19,11 @@ class App extends React.Component {
     if (term !== "" || location !== "") {
       Yelp.searchYelp(term, location, sortBy).then((businesses) => {
         if (businesses !== undefined) {
-          this.setState({ businesses: businesses });
+          this.setState({ businesses: businesses, error: "" });
         } else {
-          alert("No businesses found");
+          this.setState({ error: "No businesses found" });
         }
+        this.setState({ isLoading: false });
       });
     }
   }
@@ -29,7 +32,15 @@ class App extends React.Component {
     return (
       <div className="App">
         <h1>ravenous</h1>
-        <SearchBar searchYelp={this.searchYelp} />
+        <SearchBar
+          searchYelp={this.searchYelp}
+          onIsLoadingChange={(isLoading) =>
+            this.setState({ isLoading: isLoading })
+          }
+          onErrorChange={(error) => this.setState({ error: error })}
+        />
+        {this.state.isLoading && <p>Loading</p>}
+        {this.state.error !== "" && <p>{this.state.error}</p>}
         <BusinessList businesses={this.state.businesses} />
       </div>
     );
