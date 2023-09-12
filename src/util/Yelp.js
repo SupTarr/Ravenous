@@ -1,5 +1,5 @@
-const apiKey =
-  "gq111BBb6kvbF_0rGChlYVVCxHnSGNFSDzA-D31Ye_p_N7R2oPP4BWRWaX01OKmIvYLkrzlL8VzCl1arJGolMakU9YUnn0MN5D3qmSGVRSj0Pf0Db9bgOjaFQyjeYnYx";
+const apiKey = import.meta.env.YELP_API_KEY;
+
 const Yelp = {
   async searchYelp(term, location, sortBy) {
     const response = await fetch(
