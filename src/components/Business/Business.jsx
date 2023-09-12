@@ -5,11 +5,13 @@ class Business extends React.Component {
   render() {
     return (
       <div className="Business">
-        {this.props.business.imageSrc !== "" && (
-          <div className="image-container">
-            <img src={this.props.business.imageSrc} alt="" />
-          </div>
-        )}
+        <div className="image-container">
+          <img
+            src={this.props.business.imageSrc}
+            alt=""
+            onError={(e) => (e.target.src = "./background_search_desktop.jpg")}
+          />
+        </div>
         <div className="Business-name">
           <a href={this.props.business.url} target="blank">
             <h2>{this.props.business.name}</h2>
