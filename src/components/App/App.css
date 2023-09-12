@@ -43,3 +43,27 @@ h1 {
   font-size: 1.8rem;
   color: #fff;
 }
+
+/* Loading and Error Styles */
+
+div.loading, div.error {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 16px;
+}
+
+div.loading p, div.error p {
+  font-size: 1rem;
+  padding: 0.66rem 1rem;
+  border-radius: 8px;
+}
+
+div.loading p {
+  background-color: #fff;
+}
+
+div.error p {
+  color: white;
+  background-color: firebrick;
+}
