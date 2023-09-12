@@ -9,7 +9,7 @@ class Business extends React.Component {
           <img
             src={this.props.business.imageSrc}
             alt=""
-            onError={(e) => (e.target.src = "./background_search_desktop.jpg")}
+            onError={(e) => (e.target.src = "/background_search_desktop.jpg")}
           />
         </div>
         <div className="Business-name">
