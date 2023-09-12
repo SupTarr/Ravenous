@@ -54,7 +54,7 @@ class SearchBar extends React.Component {
     if (this.state.term === "" || this.state.location === "") {
       this.props.onErrorChange("Please enter a search term and location.");
     } else {
-      this.props.onErrorChange("");
+      this.props.onErrorChange(null);
       this.props.onIsLoadingChange(true);
       this.props.searchYelp(
         this.state.term,
