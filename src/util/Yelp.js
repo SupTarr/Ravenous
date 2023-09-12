@@ -1,4 +1,4 @@
-const apiKey = import.meta.env.YELP_API_KEY;
+const apiKey = import.meta.env.VITE_YELP_API;
 
 const Yelp = {
   async searchYelp(term, location, sortBy) {
