@@ -2,7 +2,6 @@ import React from "react";
 import "./App.css";
 import BusinessList from "../BusinessList/BusinessList.jsx";
 import SearchBar from "../SearchBar/SearchBar.jsx";
-import Yelp from "../../util/Yelp";
 
 class App extends React.Component {
   constructor(props) {
@@ -16,14 +15,23 @@ class App extends React.Component {
   }
 
   searchYelp(term, location, sortBy) {
-    Yelp.searchYelp(term, location, sortBy).then((businesses) => {
-      if (businesses !== undefined) {
-        this.setState({ businesses: businesses, error: null });
-      } else {
-        this.setState({ error: "No businesses found" });
-      }
-      this.setState({ isLoading: false });
-    });
+    fetch(`${import.meta.env.VITE_YELP_API_URL}/businesses/search`, {
+      method: "POST",
+      headers: {
+        Accept: "application/json, text/plain, */*",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ term: term, location: location, sortBy: sortBy }),
+    })
+      .then((response) => response.json())
+      .then((json) => {
+        if (json) {
+          this.setState({ businesses: json, error: null });
+        } else {
+          this.setState({ error: "No businesses found" });
+        }
+        this.setState({ isLoading: false });
+      });
   }
 
   render() {
