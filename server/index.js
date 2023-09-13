@@ -8,11 +8,18 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.post("/api/v1/search", async (req, res) => {
-  const { term, location, sortBy } = req.body;
+app.post("/businesses/search", async (req, res) => {
   const apiKey = process.env.YELP_API;
+  const url = new URL("https://api.yelp.com/v3/businesses/search");
+  const params = {
+    term: req.body.term,
+    location: req.body.location,
+    sort_by: req.body.sortBy,
+  };
+  url.search = new URLSearchParams(params).toString();
+
   const response = await fetch(
-    `https://api.yelp.com/v3/businesses/search?term=${term}&location=${location}&sort_by=${sortBy}`,
+    url.toString(),
     {
       headers: {
         Authorization: `Bearer ${apiKey}`,
@@ -20,6 +27,7 @@ app.post("/api/v1/search", async (req, res) => {
     }
   );
   const jsonResponse = await response.json();
+
   if (jsonResponse.businesses) {
     return res.json(
       jsonResponse.businesses.map((business) => {
