@@ -6,7 +6,7 @@ const Yelp = {
       `https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=${term}&location=${location}&sort_by=${sortBy}`,
       {
         headers: {
-          Authorization: `Bearer ${apiKey}`,
+          Authorization: `Bearer gq111BBb6kvbF_0rGChlYVVCxHnSGNFSDzA-D31Ye_p_N7R2oPP4BWRWaX01OKmIvYLkrzlL8VzCl1arJGolMakU9YUnn0MN5D3qmSGVRSj0Pf0Db9bgOjaFQyjeYnYx`,
         },
       },
     );
