@@ -17,7 +17,6 @@ class App extends React.Component {
   searchYelp(term, location, sortBy) {
     fetch(`${import.meta.env.VITE_YELP_API_URL}/businesses/search`, {
       method: "POST",
-      mode: "no-cors",
       headers: {
         Accept: "application/json, text/plain, */*",
         "Content-Type": "application/json",
