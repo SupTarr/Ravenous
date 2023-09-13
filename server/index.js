@@ -46,6 +46,8 @@ app.post("/businesses/search", async (req, res) => {
         };
       })
     );
+  } else {
+    res.status(404).send('Not found');
   }
 });
 
