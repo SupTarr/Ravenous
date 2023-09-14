@@ -17,7 +17,6 @@ class App extends React.Component {
   searchYelp(term, location, sortBy) {
     fetch(`${import.meta.env.VITE_YELP_API_URL}/businesses/search`, {
       method: "POST",
-      mode: "cors",
       headers: {
         Accept: "application/json, text/plain, */*",
         "Content-Type": "application/json",
@@ -26,12 +25,16 @@ class App extends React.Component {
     })
       .then((response) => response.json())
       .then((json) => {
-        if (json) {
+        if (json.length > 0) {
           this.setState({ businesses: json, error: null });
         } else {
           this.setState({ error: "No businesses found" });
         }
         this.setState({ isLoading: false });
+      })
+      .catch((error) => {
+        console.log(error);
+        this.setState({ error: "No businesses found", isLoading: false });
       });
   }
 
