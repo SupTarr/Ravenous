@@ -8,10 +8,6 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*")
-})
-
 app.post("/businesses/search", async (req, res) => {
   const apiKey = process.env.YELP_API;
   const url = new URL("https://api.yelp.com/v3/businesses/search");
