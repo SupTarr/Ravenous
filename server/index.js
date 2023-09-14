@@ -3,12 +3,12 @@ const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const yelp = require("yelp-fusion");
-const client = yelp.client("YOUR_API_KEY");
+const client = yelp.client(process.env.YELP_API);
 
 const app = express();
 
 const whiteList = [
-  "http://localhost:3000",
+  "http://localhost:5173",
   "https://ravenous.suptarr.vercel.app",
 ];
 const corsOption = {
@@ -30,25 +30,15 @@ app.options("/*", (_, res) => {
 });
 
 app.post("/businesses/search", async (req, res) => {
-  const apiKey = process.env.YELP_API;
-  const url = new URL("https://api.yelp.com/v3/businesses/search");
-  const params = {
+  const response = await client.search({
     term: req.body.term,
     location: req.body.location,
     sort_by: req.body.sortBy,
-  };
-  url.search = new URLSearchParams(params).toString();
-
-  const response = await fetch(url.toString(), {
-    headers: {
-      Authorization: `Bearer ${apiKey}`,
-    },
   });
-  const jsonResponse = await response.json();
 
-  if (jsonResponse.businesses) {
+  if (response.jsonBody.businesses) {
     return res.json(
-      jsonResponse.businesses.map((business) => {
+      response.jsonBody.businesses.map((business) => {
         return {
           id: business.id,
           imageSrc: business.image_url,
@@ -62,7 +52,7 @@ app.post("/businesses/search", async (req, res) => {
           reviewCount: business.review_count,
           url: business.url,
         };
-      }),
+      })
     );
   } else {
     res.status(404).send("Not found");
