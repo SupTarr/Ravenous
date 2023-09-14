@@ -12,6 +12,7 @@ This project was created with:
 - CSS
 - JavaScript
 - React
+- Express
 - Git and GitHub
 - HTTP Requests and Responses
 - Authentication
@@ -24,8 +25,30 @@ Clone the project
 git clone https://github.com/SupTarr/Ravenous.git
 ```
 
-In the project directory, you can run:
+### Front End
+
+Change directory to client directory:
+
+```sh
+cd client
+```
+
+In the client directory, you can run:
 
 ```sh
 npm run dev
+```
+
+### Back End
+
+Open new terminal and change directory to server directory:
+
+```sh
+cd server
+```
+
+In the server directory, you can run:
+
+```sh
+nodemon index.js
 ```
