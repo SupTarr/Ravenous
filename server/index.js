@@ -2,7 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
-const whiteList = ["http://localhost:3000", "https://ravenous.suptarr.vercel.app/"];
+const whiteList = ["http://localhost:3000", "https://ravenous.suptarr.vercel.app"];
 const corsOption = {
   origin: (origin, callback) => {
     if (whiteList.indexOf(origin) !== -1 || !origin) {
