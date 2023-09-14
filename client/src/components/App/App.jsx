@@ -33,7 +33,7 @@ class App extends React.Component {
         this.setState({ isLoading: false });
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
         this.setState({ error: "No businesses found", isLoading: false });
       });
   }

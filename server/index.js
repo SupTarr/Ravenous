@@ -2,9 +2,20 @@ require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
+const whiteList = ["http://localhost:3000", "https://ravenous.suptarr.vercel.app/"];
+const corsOption = {
+  origin: (origin, callback) => {
+    if (whiteList.indexOf(origin) !== -1 || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  optionSuccessStatus: 200,
+}
 
 const app = express();
-app.use(cors());
+app.use(cors(corsOption));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
