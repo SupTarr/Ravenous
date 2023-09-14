@@ -19,6 +19,10 @@ app.use(cors(corsOption));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+app.options('/*', (_, res) => {
+  res.sendStatus(200);
+});
+
 app.post("/businesses/search", async (req, res) => {
   const apiKey = process.env.YELP_API;
   const url = new URL("https://api.yelp.com/v3/businesses/search");
