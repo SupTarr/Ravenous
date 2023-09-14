@@ -59,7 +59,7 @@ class SearchBar extends React.Component {
       this.props.searchYelp(
         this.state.term,
         this.state.location,
-        this.state.sortBy
+        this.state.sortBy,
       );
     }
   }

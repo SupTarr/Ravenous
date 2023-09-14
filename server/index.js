@@ -2,7 +2,15 @@ require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
-const whiteList = ["http://localhost:3000", "https://ravenous.suptarr.vercel.app"];
+const yelp = require("yelp-fusion");
+const client = yelp.client("YOUR_API_KEY");
+
+const app = express();
+
+const whiteList = [
+  "http://localhost:3000",
+  "https://ravenous.suptarr.vercel.app",
+];
 const corsOption = {
   origin: (origin, callback) => {
     if (whiteList.indexOf(origin) !== -1 || !origin) {
@@ -12,14 +20,12 @@ const corsOption = {
     }
   },
   optionSuccessStatus: 200,
-}
-
-const app = express();
+};
 app.use(cors(corsOption));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.options('/*', (_, res) => {
+app.options("/*", (_, res) => {
   res.sendStatus(200);
 });
 
@@ -33,14 +39,11 @@ app.post("/businesses/search", async (req, res) => {
   };
   url.search = new URLSearchParams(params).toString();
 
-  const response = await fetch(
-    url.toString(),
-    {
-      headers: {
-        Authorization: `Bearer ${apiKey}`,
-      },
-    }
-  );
+  const response = await fetch(url.toString(), {
+    headers: {
+      Authorization: `Bearer ${apiKey}`,
+    },
+  });
   const jsonResponse = await response.json();
 
   if (jsonResponse.businesses) {
@@ -59,10 +62,10 @@ app.post("/businesses/search", async (req, res) => {
           reviewCount: business.review_count,
           url: business.url,
         };
-      })
+      }),
     );
   } else {
-    res.status(404).send('Not found');
+    res.status(404).send("Not found");
   }
 });
 
