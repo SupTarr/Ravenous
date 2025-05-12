@@ -7,10 +7,8 @@ const client = yelp.client(process.env.YELP_API);
 
 const app = express();
 
-const whiteList = [
-  "http://localhost:5173",
-  "https://ravenous.suptarr.vercel.app",
-];
+const whiteList = ["https://ravenous.suptarr.vercel.app"];
+
 const corsOption = {
   origin: (origin, callback) => {
     if (whiteList.indexOf(origin) !== -1 || !origin) {
